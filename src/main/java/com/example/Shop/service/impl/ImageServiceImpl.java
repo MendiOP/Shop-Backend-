@@ -1,7 +1,7 @@
 package com.example.Shop.service.impl;
 
 import com.example.Shop.dto.ImageDTO;
-import com.example.Shop.exceptions.ImageNotFoundException;
+import com.example.Shop.exceptions.ResourceNotFoundException;
 import com.example.Shop.model.Image;
 import com.example.Shop.model.Product;
 import com.example.Shop.repository.ImageRepository;
@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,14 +27,14 @@ public class ImageServiceImpl implements ImageService {
   public Image getImageById(Long id) {
     return imageRepository
         .findById(id)
-        .orElseThrow(() -> new ImageNotFoundException("Image not found with id " + id));
+        .orElseThrow(() -> new ResourceNotFoundException("Image not found with id " + id));
   }
 
   @Override
   public void deleteImageById(Long id) {
     imageRepository
         .findById(id)
-        .orElseThrow(() -> new ImageNotFoundException("Image not found with id " + id));
+        .orElseThrow(() -> new ResourceNotFoundException("Image not found with id " + id));
     imageRepository.deleteById(id);
   }
 

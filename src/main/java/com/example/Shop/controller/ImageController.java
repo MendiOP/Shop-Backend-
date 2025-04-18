@@ -1,7 +1,7 @@
 package com.example.Shop.controller;
 
 import com.example.Shop.dto.ImageDTO;
-import com.example.Shop.exceptions.ImageNotFoundException;
+import com.example.Shop.exceptions.ResourceNotFoundException;
 import com.example.Shop.model.Image;
 import com.example.Shop.response.ApiResponse;
 import com.example.Shop.service.ImageService;
@@ -64,7 +64,7 @@ public class ImageController {
         Image image1 = imageService.updateImage(file, imageId);
         return new ResponseEntity<>(new ApiResponse("Update Successfully!", image1), HttpStatus.OK);
       }
-    } catch (ImageNotFoundException e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Update Failed!", e.getMessage()), HttpStatus.NOT_FOUND);
     }
@@ -82,7 +82,7 @@ public class ImageController {
         imageService.deleteImageById(imageId);
         return new ResponseEntity<>(new ApiResponse("Deleted Successfully!", null), HttpStatus.OK);
       }
-    } catch (ImageNotFoundException e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Delete Failed!", e.getMessage()), HttpStatus.NOT_FOUND);
     }

@@ -1,5 +1,6 @@
 package com.example.Shop.controller;
 
+import com.example.Shop.exceptions.ResourceNotFoundException;
 import com.example.Shop.model.Category;
 import com.example.Shop.response.ApiResponse;
 import com.example.Shop.service.CategoryService;
@@ -24,7 +25,7 @@ public class CategoryController {
       List<Category> allCategories = categoryService.getAllCategories();
 
       return new ResponseEntity<>(new ApiResponse("All Categories", allCategories), HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Error", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -46,7 +47,7 @@ public class CategoryController {
     try {
       Category category = categoryService.getCategoryById(categoryId);
       return new ResponseEntity<>(new ApiResponse("Category Found", category), HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Category Not Found", e.getMessage()), HttpStatus.NOT_FOUND);
     }
@@ -57,7 +58,7 @@ public class CategoryController {
     try {
       Category category = categoryService.getCategoryByName(name);
       return new ResponseEntity<>(new ApiResponse("Category Found", category), HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Category Not Found", e.getMessage()), HttpStatus.NOT_FOUND);
     }
@@ -68,7 +69,7 @@ public class CategoryController {
     try {
       categoryService.deleteCategory(categoryId);
       return new ResponseEntity<>(new ApiResponse("Category Deleted", null), HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Error Deleting Category", e.getMessage()), HttpStatus.NOT_FOUND);
     }
@@ -80,7 +81,7 @@ public class CategoryController {
     try {
       Category category1 = categoryService.updateCategory(categoryId, category);
       return new ResponseEntity<>(new ApiResponse("Category Updated", category1), HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (ResourceNotFoundException e) {
       return new ResponseEntity<>(
           new ApiResponse("Error Updating Category", e.getMessage()), HttpStatus.NOT_FOUND);
     }
