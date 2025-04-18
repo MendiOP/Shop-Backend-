@@ -1,6 +1,7 @@
 package com.example.Shop.service.impl;
 
 import com.example.Shop.dto.ImageDTO;
+import com.example.Shop.dto.ProductDTO;
 import com.example.Shop.exceptions.ResourceNotFoundException;
 import com.example.Shop.model.Image;
 import com.example.Shop.model.Product;
@@ -38,9 +39,11 @@ public class ImageServiceImpl implements ImageService {
     imageRepository.deleteById(id);
   }
 
+
   @Override
   public List<ImageDTO> saveImage(List<MultipartFile> files, Long productId) {
     Product product = productService.getProductById(productId);
+
     return files.stream()
         .map(
             image -> {
@@ -58,8 +61,8 @@ public class ImageServiceImpl implements ImageService {
                 Image newSavedImage = imageRepository.save(savedImage);
 
                 ImageDTO imageDTO = new ImageDTO();
-                imageDTO.setImageId(newSavedImage.getId());
-                imageDTO.setImageName(newSavedImage.getFileName());
+                imageDTO.setId(newSavedImage.getId());
+                imageDTO.setFileName(newSavedImage.getFileName());
                 imageDTO.setDownloadUrl(newSavedImage.getDownloadUrl());
                 return imageDTO;
 

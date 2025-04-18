@@ -27,7 +27,7 @@ public class ImageController {
 
   @PostMapping
   public ResponseEntity<ApiResponse> saveImage(
-      @RequestParam List<MultipartFile> file, @RequestParam Long productId) {
+      @RequestBody List<MultipartFile> file, @RequestParam Long productId) {
     try {
       List<ImageDTO> imageDTOS = imageService.saveImage(file, productId);
       return new ResponseEntity<>(
@@ -38,7 +38,7 @@ public class ImageController {
     }
   }
 
-  @GetMapping("/${api.prefix}/image/download/{imageId}")
+  @GetMapping("/image/download/{imageId}")
   public ResponseEntity<Resource> downloadImage(@PathVariable Long imageId) throws SQLException {
     Image imageById = imageService.getImageById(imageId);
 

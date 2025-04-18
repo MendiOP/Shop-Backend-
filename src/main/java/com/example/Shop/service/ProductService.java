@@ -1,5 +1,6 @@
 package com.example.Shop.service;
 
+import com.example.Shop.dto.ProductDTO;
 import com.example.Shop.model.Product;
 import com.example.Shop.request.AddProductRequest;
 import com.example.Shop.request.ProductUpdateRequest;
@@ -16,6 +17,10 @@ public interface ProductService {
     void deleteProduct(Long id);
 
     List<Product> getAllProducts();
+
+    List<ProductDTO> getConvertedProducts(List<Product> products);
+
+    ProductDTO convertToProductDTO(Product product);
 
     List<Product> getProductsByCategory(String category);
 
