@@ -48,8 +48,15 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public Long initializeNewCart(){
+  public Long initializeNewCart() {
     Cart cart = new Cart();
     return cartRepository.save(cart).getId();
+  }
+
+  @Override
+  public Cart getCartByUserId(Long userId) {
+    return cartRepository
+        .findById(userId)
+        .orElseThrow(() -> new ResourceNotFoundException("Cart Not found"));
   }
 }

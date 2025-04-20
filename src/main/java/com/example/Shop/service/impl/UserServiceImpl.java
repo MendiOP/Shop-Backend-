@@ -1,6 +1,12 @@
 package com.example.Shop.service.impl;
 
+import com.example.Shop.dto.UserDto;
+import com.example.Shop.exceptions.AlreadyExistsException;
 import com.example.Shop.exceptions.ResourceNotFoundException;
+import com.example.Shop.model.User;
+import com.example.Shop.repository.UserRepository;
+import com.example.Shop.request.CreateUserRequest;
+import com.example.Shop.request.UserUpdateRequest;
 import com.example.Shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

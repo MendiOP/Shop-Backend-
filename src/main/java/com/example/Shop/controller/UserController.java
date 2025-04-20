@@ -1,5 +1,13 @@
 package com.example.Shop.controller;
 
+import com.example.Shop.dto.UserDto;
+import com.example.Shop.exceptions.AlreadyExistsException;
+import com.example.Shop.exceptions.ResourceNotFoundException;
+import com.example.Shop.model.User;
+import com.example.Shop.request.CreateUserRequest;
+import com.example.Shop.request.UserUpdateRequest;
+import com.example.Shop.response.ApiResponse;
+import com.example.Shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +19,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @RestController
 @RequestMapping("${api.prefix}/users")
 public class UserController {
-    private final IUserService userService;
+    private final UserService userService;
 
     @GetMapping("/{userId}/user")
     public ResponseEntity<ApiResponse> getUserById(@PathVariable Long userId) {

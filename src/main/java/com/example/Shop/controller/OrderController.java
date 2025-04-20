@@ -1,10 +1,12 @@
 package com.example.Shop.controller;
 
 
+import com.example.Shop.dto.OrderDto;
 import com.example.Shop.exceptions.ResourceNotFoundException;
 import com.example.Shop.response.ApiResponse;
+import com.example.Shop.service.OrderService;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.Shop.model.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/orders")
 public class OrderController {
-    private final IOrderService orderService;
+    private final OrderService orderService;
 
     @PostMapping("/order")
     public ResponseEntity<ApiResponse> createOrder(@RequestParam Long userId) {
