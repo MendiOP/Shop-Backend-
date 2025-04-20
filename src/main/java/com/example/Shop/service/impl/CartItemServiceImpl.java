@@ -40,16 +40,16 @@ public class CartItemServiceImpl implements CartItemService {
             .orElse(new CartItem());
 
     if (cartItem.getId() == null) {
+      cartItem.setCart(cart);
       cartItem.setProduct(product);
       cartItem.setQuantity(quantity);
-      cartItem.setCart(cart);
       cartItem.setUnitPrice(product.getPrice());
     } else {
       cartItem.setQuantity(cartItem.getQuantity() + quantity);
     }
 
     cartItem.setTotalPrice();
-    cartItem.setCart(cart);
+    cart.addItem(cartItem);
     cartItemRepository.save(cartItem);
     cartRepository.save(cart);
   }
