@@ -1,5 +1,6 @@
 package com.example.Shop.security.jwt;
 
+import com.example.Shop.security.user.ShopUserDetailsService;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

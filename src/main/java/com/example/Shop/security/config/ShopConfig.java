@@ -1,5 +1,7 @@
 package com.example.Shop.security.config;
 
+import com.example.Shop.security.jwt.AuthTokenFilter;
+import com.example.Shop.security.jwt.JwtAuthEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
